@@ -16,7 +16,7 @@
 <body>
 <a href="/">Terug naar hoofdpagina</a>
 <h1>Brouwers op alfabet <c:if test="${not empty letter}">${letter}</c:if></h1>
-<ul>
+<ul id="letters">
     <c:forEach items="${alfabet}" var="letter">
         <li>
             <spring:url value="/brouwers/beginnaam/{letter}" var="letterURL">

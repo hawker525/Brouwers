@@ -1,7 +1,12 @@
-ul {
+ul#letters{
     list-style-type: none;
+    display: inline-block;
+    width: 100%;
 }
 
+ul {
+    display: block;
+}
 li {
     float: left;
     margin-right: 1%;
