@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import java.time.LocalTime;
 
 import java.util.List;
 
@@ -30,7 +31,18 @@ public class BrouwerController {
 
     @GetMapping
     ModelAndView findAll() {
-        return new ModelAndView(BROUWERS_VIEW, "brouwers", brouwerService.findAll());
+        int hour = LocalTime.now().getHour();
+        String msg;
+        if (hour <= 5) {
+            msg = "nacht";
+        } else if (hour <= 11) {
+            msg = "morgen";
+        } else if (hour <= 17) {
+            msg = "middag";
+        } else {
+            msg = "avond";
+        }
+        return new ModelAndView(BROUWERS_VIEW, "brouwers", brouwerService.findAll()).addObject("msg", msg);
     }
 
     @GetMapping("toevoegen")

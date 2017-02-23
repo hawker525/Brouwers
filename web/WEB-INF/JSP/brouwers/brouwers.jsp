@@ -7,6 +7,7 @@
 --%>
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@taglib prefix='spring' uri= 'http://www.springframework.org/tags'%>
 <html>
 <head>
     <title>Title</title>
@@ -14,6 +15,7 @@
 <body>
 <a href="/">Terug naar hoofdpagina</a>
 <h1>Alle brouwers</h1>
+<h2><spring:message code="${msg}" /></h2>
 <table>
     <tr>
         <th>Nummer</th>
