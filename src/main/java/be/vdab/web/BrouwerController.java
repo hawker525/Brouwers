@@ -46,9 +46,6 @@ public class BrouwerController {
     @GetMapping("beginnaam/{letter}")
     ModelAndView showBrouwers(@PathVariable String letter) {
         List<Brouwer> brouwers = brouwerService.findByNaam(letter);
-        for (Brouwer b : brouwers) {
-            System.out.println(b);
-        }
         ModelAndView view = new ModelAndView(BEGINNAAM_VIEW).addObject("alfabet", alfabet).addObject("letter", letter);
         if(!brouwers.isEmpty()){
             return view.addObject("brouwers", brouwers);
