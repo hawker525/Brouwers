@@ -31,18 +31,7 @@ public class BrouwerController {
 
     @GetMapping
     ModelAndView findAll() {
-        int hour = LocalTime.now().getHour();
-        String msg;
-        if (hour <= 5) {
-            msg = "nacht";
-        } else if (hour <= 11) {
-            msg = "morgen";
-        } else if (hour <= 17) {
-            msg = "middag";
-        } else {
-            msg = "avond";
-        }
-        return new ModelAndView(BROUWERS_VIEW, "brouwers", brouwerService.findAll()).addObject("msg", msg);
+        return new ModelAndView(BROUWERS_VIEW, "brouwers", brouwerService.findAll());
     }
 
     @GetMapping("toevoegen")

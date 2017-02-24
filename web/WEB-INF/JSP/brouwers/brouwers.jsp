@@ -10,12 +10,11 @@
 <%@taglib prefix='spring' uri= 'http://www.springframework.org/tags'%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Brouwers</title>
 </head>
 <body>
 <a href="/">Terug naar hoofdpagina</a>
 <h1>Alle brouwers</h1>
-<h2><spring:message code="${msg}" /></h2>
 <table>
     <tr>
         <th>Nummer</th>
