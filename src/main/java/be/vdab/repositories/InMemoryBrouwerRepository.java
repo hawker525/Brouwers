@@ -19,6 +19,7 @@ public class InMemoryBrouwerRepository implements BrouwerRepository{
     public InMemoryBrouwerRepository() {
         brouwers.put(1L, new Brouwer(1, "Bart", 5, new Adres("buntstraat", "29", 9940, "Evergem")));
         brouwers.put(2L, new Brouwer(2, "Maarten", null, new Adres("testlaan", "20", 9940, "Wondelgem")));
+        brouwers.put(3L, new Brouwer(2, "Bonobo", null, new Adres("testlaan", "20", 9940, "Wondelgem")));
     }
 
     @Override

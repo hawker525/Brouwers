@@ -14,7 +14,8 @@
 </head>
 <body>
     <a href="/brouwers">Brouwers</a>
-    <a href="/brouwers/beginnaam">Brouwers op naam</a>
+    <a href="/brouwers/naam">Zoek brouwers op naam</a>
+    <a href="/brouwers/beginnaam">Beginnaam brouwers</a>
     <a href="/brouwers/toevoegen">Brouwer toevoegen</a>
     <h1><spring:message code="${msg}"/> </h1>
 </body>
