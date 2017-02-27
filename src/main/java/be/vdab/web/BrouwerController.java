@@ -5,9 +5,8 @@ import be.vdab.services.BrouwerService;
 import be.vdab.services.DefaultBrouwerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -22,6 +21,7 @@ public class BrouwerController {
     private static final String BROUWERS_VIEW = "brouwers/brouwers";
     private static final String BEGINNAAM_VIEW = "brouwers/beginnaam";
     private static final String TOEVOEGEN_VIEW = "brouwers/toevoegen";
+    private static final String REDIRECT_URL_NA_TOEVOEGEN = "redirect:/brouwers";
     private static final String REDIRECT_URL_BROUWERS_NIET_GEVONDEN = "brouwers/beginnaam";
     private static final String NAAM_VIEW = "brouwers/naam";
     private static char[] alfabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
@@ -42,6 +42,11 @@ public class BrouwerController {
         return new ModelAndView(NAAM_VIEW).addObject(brouwerZoeken);
     }
 
+    @InitBinder("brouwer")
+    void initBinderBrouwerToevoegen(WebDataBinder webDataBinder) {
+        webDataBinder.initDirectFieldAccess();
+    }
+
     @GetMapping(path = "naam", params = "naam")
     ModelAndView findBrouwersByNaam(@Valid BrouwerZoeken cmdObj, BindingResult bindingResult) {
         ModelAndView mAndV = new ModelAndView(NAAM_VIEW);
@@ -57,8 +62,18 @@ public class BrouwerController {
     }
 
     @GetMapping("toevoegen")
-    String createForm() {
-        return TOEVOEGEN_VIEW;
+    ModelAndView createForm() {
+        return new ModelAndView(TOEVOEGEN_VIEW, "brouwer", new Brouwer());
+    }
+
+    @PostMapping("toevoegen")
+    String create(@Valid Brouwer brouwer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return TOEVOEGEN_VIEW;
+        } else {
+            brouwerService.create(brouwer);
+            return REDIRECT_URL_NA_TOEVOEGEN;
+        }
     }
 
     @GetMapping("beginnaam")

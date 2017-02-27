@@ -1,5 +1,10 @@
 package be.vdab.valueobjects;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -7,10 +12,23 @@ import java.io.Serializable;
  */
 public final class Adres implements Serializable{
     private static final long serialVersionUID = 1L;
-    private final String straat;
-    private final String huisNr;
-    private final Integer postcode;
-    private final String gemeente;
+
+    @NotBlank
+    @Length(min = 1, max = 50)
+    private String straat;
+
+    @NotBlank
+    @Length(min = 1, max = 7)
+    private String huisNr;
+
+    @NotNull
+    @Range(min = 1000, max = 9999)
+    private Integer postcode;
+
+    @NotBlank
+    private String gemeente;
+
+    public Adres(){}
 
     public Adres(String straat, String huisNr,
                  Integer postcode, String gemeente) {
