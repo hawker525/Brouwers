@@ -2,7 +2,6 @@ package be.vdab.services;
 
 import be.vdab.entities.Brouwer;
 import be.vdab.repositories.BrouwerRepository;
-import be.vdab.repositories.InMemoryBrouwerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +13,8 @@ import java.util.List;
 public class DefaultBrouwerService implements BrouwerService{
     private final BrouwerRepository brouwerRepository;
 
-    public DefaultBrouwerService() {
-        this.brouwerRepository = new InMemoryBrouwerRepository();
+    public DefaultBrouwerService(BrouwerRepository brouwerRepository) {
+        this.brouwerRepository = brouwerRepository;
     }
 
     @Override

@@ -2,7 +2,6 @@ package be.vdab.web;
 
 import be.vdab.entities.Brouwer;
 import be.vdab.services.BrouwerService;
-import be.vdab.services.DefaultBrouwerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,8 +26,8 @@ public class BrouwerController {
     private static char[] alfabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().toCharArray();
     private final BrouwerService brouwerService;
 
-    public BrouwerController() {
-        this.brouwerService = new DefaultBrouwerService();
+    public BrouwerController(BrouwerService brouwerService) {
+        this.brouwerService = brouwerService;
     }
 
     @GetMapping

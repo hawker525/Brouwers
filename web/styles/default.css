@@ -7,7 +7,7 @@ ul#letters{
 ul {
     display: block;
 }
-li {
+ul#letters li {
     float: left;
     margin-right: 1%;
 }
