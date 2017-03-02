@@ -17,6 +17,7 @@ import java.util.Map;
  * Created by Maarten Westelinck on 6/02/2017 for brouwers.
  */
 @Repository
+@ReadOnlyTransactionalService
 public class JdbcBrouwerRepository implements BrouwerRepository{
 
     private static final String BEGIN_SQL = "select id, naam, postcode, gemeente, omzet, straat, huisnr from brouwers ";
@@ -50,6 +51,7 @@ public class JdbcBrouwerRepository implements BrouwerRepository{
     }
 
     @Override
+    @ModifyingTransactionalServiceMethod
     public void create(Brouwer brouwer) {
         Map<String, Object> kolomWaarden = new HashMap<>();
         kolomWaarden.put("naam", brouwer.getNaam());
