@@ -1,4 +1,4 @@
-package be.vdab.repositories;
+package be.vdab.services;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

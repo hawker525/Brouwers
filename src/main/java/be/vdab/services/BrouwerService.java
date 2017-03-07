@@ -12,5 +12,5 @@ public interface BrouwerService {
 
     List<Brouwer> findAll();
 
-    List<Brouwer> findByNaam(String beginNaam);
+    List<Brouwer> findByNaamStartingWith(String beginNaam);
 }

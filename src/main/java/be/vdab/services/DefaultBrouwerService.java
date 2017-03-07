@@ -10,6 +10,7 @@ import java.util.List;
  * Created by Maarten Westelinck on 6/02/2017 for brouwers.
  */
 @Service
+@ReadOnlyTransactionalService
 public class DefaultBrouwerService implements BrouwerService{
     private final BrouwerRepository brouwerRepository;
 
@@ -18,8 +19,9 @@ public class DefaultBrouwerService implements BrouwerService{
     }
 
     @Override
+    @ModifyingTransactionalServiceMethod
     public void create(Brouwer brouwer) {
-        brouwerRepository.create(brouwer);
+        brouwerRepository.save(brouwer);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class DefaultBrouwerService implements BrouwerService{
     }
 
     @Override
-    public List<Brouwer> findByNaam(String beginNaam) {
-        return brouwerRepository.findByNaam(beginNaam);
+    public List<Brouwer> findByNaamStartingWith(String beginNaam) {
+        return brouwerRepository.findByNaamStartingWith(beginNaam);
     }
 }

@@ -50,7 +50,7 @@ public class BrouwerController {
     ModelAndView findBrouwersByNaam(@Valid BrouwerZoeken cmdObj, BindingResult bindingResult) {
         ModelAndView mAndV = new ModelAndView(NAAM_VIEW);
         if (!bindingResult.hasErrors()) {
-            List<Brouwer> brouwers = brouwerService.findByNaam(cmdObj.getNaam());
+            List<Brouwer> brouwers = brouwerService.findByNaamStartingWith(cmdObj.getNaam());
             if (brouwers.isEmpty()) {
                 bindingResult.reject("geenBrouwers");
             } else {
@@ -82,7 +82,7 @@ public class BrouwerController {
 
     @GetMapping("beginnaam/{letter}")
     ModelAndView showBrouwers(@PathVariable String letter) {
-        List<Brouwer> brouwers = brouwerService.findByNaam(letter);
+        List<Brouwer> brouwers = brouwerService.findByNaamStartingWith(letter);
         ModelAndView view = new ModelAndView(BEGINNAAM_VIEW).addObject("alfabet", alfabet).addObject("letter", letter);
         if(!brouwers.isEmpty()){
             return view.addObject("brouwers", brouwers);
