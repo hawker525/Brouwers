@@ -8,13 +8,18 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Created by Maarten Westelinck on 6/02/2017 for brouwers.
  */
 @Entity
 @Table(name = "brouwers")
-public final class Brouwer {
+@XmlRootElement
+public final class Brouwer implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -60,5 +65,25 @@ public final class Brouwer {
 
     public Adres getAdres() {
         return adres;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setOmzet(Integer omzet) {
+        this.omzet = omzet;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
+    public void setVersie(long versie) {
+        this.versie = versie;
     }
 }
